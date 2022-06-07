@@ -56,11 +56,9 @@ import Editor from '@toast-ui/editor';
 
 const MarkdownEditor = ({ onContentChange }) => {
   // BEGIN (write your solution here)
-  const rootElement = React.createRef();
+  const rootElement = useRef('');
 
-  const onChange = (editor) => {
-    onContentChange(editor.getMarkdown());
-  }
+  const onChange = (editor) => onContentChange(editor.getMarkdown());
 
   useEffect(() => {
     const editor = new Editor({
@@ -68,8 +66,8 @@ const MarkdownEditor = ({ onContentChange }) => {
       hideModeSwitch: true,
     });
     editor.addHook('change', () => onChange(editor));
-  })
-  
+  });
+
   return <div ref={rootElement} />;
   
   // END
