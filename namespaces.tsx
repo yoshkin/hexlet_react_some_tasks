@@ -4,9 +4,7 @@ const Text = ({ children }) => <p className="card-text">{children}</p>;
 
 export default class Card extends React.Component {
   static Body = Body;
-
   static Title = Title;
-
   static Text = Text;
 
   render() {
