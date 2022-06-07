@@ -45,3 +45,35 @@ import MarkdownEditor from './MarkdownEditor.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('container'));
 root.render(<MarkdownEditor onContentChange={console.log} />);
+
+
+// Markdown HOOKS VERSION
+
+// @ts-check
+
+import React, { useRef, useEffect } from 'react';
+import Editor from '@toast-ui/editor';
+
+const MarkdownEditor = ({ onContentChange }) => {
+  // BEGIN (write your solution here)
+  const rootElement = React.createRef();
+
+  const onChange = (editor) => {
+    onContentChange(editor.getMarkdown());
+  }
+
+  useEffect(() => {
+    const editor = new Editor({
+      el: rootElement.current,
+      hideModeSwitch: true,
+    });
+    editor.addHook('change', () => onChange(editor));
+  })
+  
+  return <div ref={rootElement} />;
+  
+  // END
+};
+
+export default MarkdownEditor;
+
