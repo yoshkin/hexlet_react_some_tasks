@@ -16,7 +16,23 @@ const Item = ({ task, onClick }) => {
 
 export default Item;
 
+//routes.js
+
+const host = '';
+
+export default {
+  tasksPath: () => [host, 'tasks'].join('/'),
+  finishTaskPath: (id) => [host, 'tasks', id, 'finish'].join('/'),
+  activateTaskPath: (id) => [host, 'tasks', id, 'activate'].join('/'),
+};
+
+
 //TodoBox.jsx
+import axios from 'axios';
+import React from 'react';
+import update from 'immutability-helper';
+import Item from './Item.jsx';
+import routes from './routes.js';
 
 export default class TodoBox extends React.Component {
   constructor(props) {
